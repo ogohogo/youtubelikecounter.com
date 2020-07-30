@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>▷ Real-Time YouTube Live View, Like, Dislike and Comment Counter 🔥 — YouTubeLikeCounter.com</title>
+    <meta name="Description" content="YouTubeLikeCounter.com is the simple tool to see Live View, Like, Dislike and Comment Count of YouTube Video! Never miss that milestone!">
+    <meta property="og:image" content="assets/images/mainPage.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
+
+    <link href="assets/css/preloader.css" rel="stylesheet">
+    <link href="assets/css/odometer-theme-minimal.css" rel="stylesheet">
+</head>
+
+<style>
+    body {
+        font-family: 'Varela Round', sans-serif;
+    }
+</style>
+
+<body class="bg-gray-200 justify-center flex">
+
+    <div id="loader-wrapper">
+        <div class="load">
+            <hr />
+            <hr />
+            <hr />
+            <hr />
+        </div>
+    </div>
+
+    <div class="container mt-16 sm:mt-16 md:mt-48 lg:mt-64 xl:mt-64 py-0 sm:py-0 md:py-0 lg:py-16 xl:py-16">
+        <div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4">
+            <div class="m-auto text-center md:mt-0 lg:mt-0 xl:mt-0">
+                <img class="m-auto inline-block sm:inline-block md:flex lg:flex xl:flex" width="40" height="40"
+                    src="assets/images/eye.svg">
+                <div
+                    class="views odometer ml-3 sm:ml-3 md:ml-0 xl:ml-0 lg:ml-0 inline-block sm:inline-block md:flex lg:flex xl:flex text-5xl sm:text-5xl md:text-5xl lg:text-4xl xl:text-4xl font-bold mt-1 leading-relaxed">
+                </div>
+            </div>
+
+            <div class="m-auto text-center mt-8 sm:mt-8 md:mt-0 lg:mt-0 xl:mt-0">
+                <img class="m-auto inline-block sm:inline-block md:flex lg:flex xl:flex" width="40" height="40"
+                    src="assets/images/like.svg">
+                <div
+                    class="likes odometer ml-3 sm:ml-3 md:ml-0 xl:ml-0 lg:ml-0 text-5xl inline-block sm:inline-block md:flex lg:flex xl:flex sm:text-5xl md:text-5xl lg:text-4xl xl:text-4xl font-bold mt-1 leading-relaxed">
+                </div>
+            </div>
+
+            <div class="m-auto text-center mt-8 sm:mt-8 md:mt-16 lg:mt-0 xl:mt-0">
+                <img class="m-auto inline-block sm:inline-block md:flex lg:flex xl:flex" width="40" height="40"
+                    src="assets/images/dislike.svg">
+                <div
+                    class="dislikes odometer ml-3 sm:ml-3 md:ml-0 xl:ml-0 lg:ml-0 text-5xl inline-block sm:inline-block md:flex lg:flex xl:flex sm:text-5xl md:text-5xl lg:text-4xl xl:text-4xl font-bold mt-1 leading-relaxed">
+                </div>
+            </div>
+
+            <div class="m-auto text-center mt-8 sm:mt-8 md:mt-16 lg:mt-0 xl:mt-0">
+                <img class="m-auto inline-block sm:inline-block md:flex lg:flex xl:flex" width="40" height="40"
+                    src="assets/images/comment.svg">
+                <div
+                    class="comments odometer ml-3 sm:ml-3 md:ml-0 xl:ml-0 lg:ml-0 text-5xl inline-block sm:inline-block md:flex lg:flex xl:flex sm:text-5xl md:text-5xl lg:text-4xl xl:text-4xl font-bold mt-1 leading-relaxed">
+                </div>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1">
+            <div class="text-center mt-5 mx-3">
+                <span class="title text-3xl">Search for your favorite video, using below's form.</span>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1">
+            <div class="m-4 mt-8 justify-center flex">
+                <input
+                    class="searchInput rounded-l-lg p-4 w-3/4 sm:w-3/4 md:w-2/4 lg:w-2/4 xl:w-2/4 border-t mr-0 border-b border-l text-gray-800 border-gray-200 bg-white"
+                    placeholder="Search Query / Video URL / Video ID" required />
+                <button
+                    class="searchButton px-8 rounded-r-lg bg-yellow-400 text-gray-800 font-bold p-4 uppercase border-yellow-500 border-t border-b border-r">Search
+                    <img width="20" height="20" class="inline-block" src="assets/images/search.svg"></button>
+            </div>
+        </div>
+
+        <div class="afterVideoLoaded hidden">
+            <div class="grid grid-cols-1">
+                <div class="m-4 mt-32">
+                    <h1 class="text-3xl">About <span class="title">Video Title</span></h1>
+
+                    <p class="text-lg whitespace-pre-line description">Video Description</p>
+                </div>
+            </div>
+
+        </div>
+
+</body>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/odometer.js/0.4.6/odometer.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="assets/js/main.js"></script>
+
+</html>
