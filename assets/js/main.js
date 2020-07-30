@@ -25,6 +25,12 @@ YT.updateManager = {
     }
 }
 
+YT.shareButtonsManager = {
+    updateTwitter: function(a) {
+        document.querySelector(".shareTwitter").href = a
+    }
+}
+
 YT.systemManager = {
     getEstimatedViewCount: function (a, b, c) {
         var channelId = a;
@@ -75,6 +81,8 @@ YT.dataManager = {
                 YT.updateManager.updateComments(data.items[0].statistics.commentCount)
                 YT.updateManager.updateTitle(data.items[0].snippet.title)
                 YT.updateManager.updateDescription(data.items[0].snippet.description)
+
+                YT.shareButtonsManager.updateTwitter(`https://twitter.com/intent/tweet?url=&text=Watch%20${data.items[0].snippet.title}'s%20Live%20View%2C%20Like%2C%20Dislike%20and%20Comment%20count%20on%20https%3A%2F%2Fwww.youtubelikecounter.com%2F%23%2F${video}%20!`)
             })
         }
     }

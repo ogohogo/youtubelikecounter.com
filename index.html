@@ -3,9 +3,11 @@
 
 <head>
     <title>▷ Real-Time YouTube Live View, Like, Dislike and Comment Counter 🔥 — YouTubeLikeCounter.com</title>
-    <meta name="Description" content="YouTubeLikeCounter.com is the simple tool to see Live View, Like, Dislike and Comment Count of YouTube Video! Never miss that milestone!">
-    <meta property="og:image" content="assets/images/mainPage.png" />
+    <meta name="Description"
+        content="YouTubeLikeCounter.com is the simple tool to see Live View, Like, Dislike and Comment Count of YouTube Video! Our website is also OBS friendly! Never miss that milestone.">
+    <meta property="og:image" content="https://youtubelikecounter.com/assets/images/mainPage.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="assets/images/like.svg" />
 
     <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
@@ -15,12 +17,16 @@
 </head>
 
 <style>
+    html {
+        background-color: #edf2f7;
+    }
+
     body {
         font-family: 'Varela Round', sans-serif;
     }
 </style>
 
-<body class="bg-gray-200 justify-center flex">
+<body class="justify-center flex">
 
     <div id="loader-wrapper">
         <div class="load">
@@ -83,15 +89,52 @@
             </div>
         </div>
 
-        <div class="afterVideoLoaded hidden">
-            <div class="grid grid-cols-1">
-                <div class="m-4 mt-32">
-                    <h1 class="text-3xl">About <span class="title">Video Title</span></h1>
 
+        <div class="afterVideoLoaded hidden">
+            <div class="grid grid-cols-1 mt-5">
+                <a class="m-auto shareTwitter">
+                    <button
+                        class="cursor-pointer bg-blue-500 hover:bg-blue-800 text-blue-100 py-2 px-4 rounded inline-flex items-center">
+                        <img width="40" height="40" class="fill-current w-4 h-4 mr-2" src="assets/images/twitter.svg">
+                        <span>Share on Twitter</span>
+                    </button>
+                </a>
+            </div>
+
+            <div class="grid grid-cols-1">
+                <div class="m-4 mt-8">
+                    <h1 class="text-3xl">About <span class="title">Video Title</span></h1>
                     <p class="text-lg whitespace-pre-line description">Video Description</p>
                 </div>
             </div>
+        </div>
 
+        <div class="grid grid-cols-1">
+            <div class="m-4 mt-6">
+                <h1 class="text-3xl">About YouTubeLikeCounter.com</h1>
+                <p class="text-lg mt-2">YouTubeLikeCounter.com is the best way to see any YouTube's video Live View,
+                    Like, Dislike, Comment and Viewers count updated in Real-Time!</p>
+                <p class="text-lg mt-2">Data seen on YouTube is often inaccurate or delayed. With YouTubeLikeCounter.com
+                    this won't be the case.</p>
+                <p class="text-lg mt-2">We're using YouTube's Official Application Programming Interface (API) in order
+                    to extract Live View, Like, Dislike, Comment and Viewers count. It's guaranteed to be as accurate as
+                    possible.</p>
+                <p class="text-lg mt-2">You can use Search Function in order to search for your favorite video.
+                    Following things are supported:</p>
+                <p class="text-lg mt-2 ml-6">&#8226; Video's Title (Example: <b>Luis Fonsi - Despacito ft. Daddy
+                        Yankee</b>)</p>
+                <p class="text-lg mt-2 ml-6">&#8226; Video's ID (Example: <b>kJQP7kiw5Fk</b>)</p>
+                <p class="text-lg mt-2 ml-6">&#8226; Video's URL (Example:
+                    <b>https://www.youtube.com/watch?v=kJQP7kiw5Fk</b>)</p>
+                <p class="text-lg mt-2 ml-6">&#8226; Search Term (Example: <b>Despacito</b>)</p>
+                <p class="text-lg mt-2">99% of the time it'll correct all spelling errors, so even if you type for
+                    example <b>depacito</b> it should still work!</p>
+                <p class="text-lg mt-2">It is the best way of searching as it's exactly the same as using YouTube's
+                    Search Bar.</p>
+                <p class="text-lg mt-2">Thanks for using YouTubeLikeCounter.com! If you have any suggestions, then feel
+                    free to e-mail us at <a class="text-blue-500" href="mailto:earned@gmail.com">earned@gmail.com</a>.
+                </p>
+            </div>
         </div>
 
 </body>
