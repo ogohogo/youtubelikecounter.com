@@ -128,6 +128,8 @@ YT.searchManager = {
 }
 
 setTimeout(function () {
+
+    
     if (window.location.href.includes("#/")) {
         video = YT.systemManager.getVideoInURL()
         YT.dataManager.getData()
@@ -157,3 +159,9 @@ document.querySelector(".searchButton").onclick = function() {
     let val = document.querySelector(".searchInput").value
     if (val != 0) YT.searchManager.search(val) 
 }
+
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-119417406-9');
