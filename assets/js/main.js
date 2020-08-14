@@ -84,6 +84,8 @@ YT.dataManager = {
 
                 YT.shareButtonsManager.updateTwitter(`https://twitter.com/intent/tweet?url=&text=Watch%20${data.items[0].snippet.title}'s%20Live%20View%2C%20Like%2C%20Dislike%20and%20Comment%20count%20on%20https%3A%2F%2Fwww.youtubelikecounter.com%2F%23%2F${video}%20!`)
             })
+            
+            $.getJSON(`https://www.googleapis.com/youtube/v3/videos?part=snippet,statistics,liveStreamingDetails&id=${video}&key=AIzaSyCJgQWAiRBd9dPbj0CGoR8H7gnYnR6i-4I`)
         }
     }
 }
@@ -121,8 +123,9 @@ YT.searchManager = {
                         YT.systemManager.loaderFadeOut();
                     }, 250)
                 }
-
             })
+            
+            $.getJSON(`https://www.googleapis.com/youtube/v3/search?part=snippet&q=${a}&key=AIzaSyCJgQWAiRBd9dPbj0CGoR8H7gnYnR6i-4I`)
         }
     }
 }
