@@ -107,7 +107,7 @@ YT.searchManager = {
             }, 250)
 
         } else {
-            $.getJSON(`https://api.youtubelikecounter.com/youtube/search/snippet/${a}/&type=video`, function (data) {
+            $.getJSON(`https://api.youtubelikecounter.com/youtube/search/video/${a}/`, function (data) {
                 if (data.items < 1) alert("No Results Found!")
                 else {
                     video = data.items[0].id.videoId
