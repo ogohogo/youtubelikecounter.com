@@ -70,7 +70,7 @@ YT.systemManager = {
 YT.dataManager = {
     getData: function () {
         if (video != undefined) {
-            $.getJSON(`https://api.livecounts.io/youtube/video/snippet,statistics,liveStreamingDetails/${video}`, function (data) {
+            $.getJSON(`https://api.youtubelikecounter.com/youtube/video/snippet,statistics,liveStreamingDetails/${video}`, function (data) {
                 if (data.items.length < 1) YT.updateManager.updateTitle("Invalid Video ID! Try searching for video again!")
 
                 if (data.items[0].liveStreamingDetails && data.items[0].liveStreamingDetails.concurrentViewers) YT.updateManager.updateViews(data.items[0].liveStreamingDetails.concurrentViewers)
@@ -107,7 +107,7 @@ YT.searchManager = {
             }, 250)
 
         } else {
-            $.getJSON(`https://api.livecounts.io/youtube/search/video/${a}/`, function (data) {
+            $.getJSON(`https://api.youtubelikecounter.com/youtube/search/video/${a}/`, function (data) {
                 if (data.items < 1) alert("No Results Found!")
                 else {
                     video = data.items[0].id.videoId
