@@ -1,4 +1,5 @@
 var YT = {};
+var APIUrl = "https://livecounts.io"
 var video;
 var loaded;
 
@@ -68,25 +69,25 @@ YT.systemManager = {
 }
 
 YT.dataManager = {
-    getData: function () {
-        if (video != undefined) {
-            $.getJSON(`https://api.youtubelikecounter.com/youtube/video/snippet,statistics,liveStreamingDetails/${video}`, function (data) {
-                if (data.items.length < 1) YT.updateManager.updateTitle("Invalid Video ID! Try searching for video again!")
+    getData: () => {
+        if (video == undefined) return;
 
-                if (data.items[0].liveStreamingDetails && data.items[0].liveStreamingDetails.concurrentViewers) YT.updateManager.updateViews(data.items[0].liveStreamingDetails.concurrentViewers)
-                else YT.updateManager.updateViews(YT.systemManager.getEstimatedViewCount(data.items[0].id.channelId, data.items[0].statistics.viewCount, data.items[0].statistics.likeCount))
+        $.getJSON(`${APIUrl}/api/live-view-count/data/${video}`, function (data) {
+            YT.updateManager.updateTitle(data.name)
+            YT.updateManager.updateDescription(data.description)
 
-                YT.updateManager.updateLikes(data.items[0].statistics.likeCount)
-                YT.updateManager.updateDislikes(data.items[0].statistics.dislikeCount)
-                YT.updateManager.updateComments(data.items[0].statistics.commentCount)
-                YT.updateManager.updateTitle(data.items[0].snippet.title)
-                YT.updateManager.updateDescription(data.items[0].snippet.description)
+            YT.shareButtonsManager.updateTwitter(`https://twitter.com/intent/tweet?url=&text=Watch%20${data.name}'s%20Live%20View%2C%20Like%2C%20Dislike%20and%20Comment%20count%20on%20https%3A%2F%2Fwww.youtubelikecounter.com%2F%23%2F${video}%20!`)
+        })
+    },
+    getStats: () => {
+        $.getJSON(`${APIUrl}/api/live-view-count/stats/${video}`, function (data) {
+            if (data.viewerCount != null) YT.updateManager.updateViews(data.viewerCount)
+            else YT.updateManager.updateViews(YT.systemManager.getEstimatedViewCount(video, data.followerCount, data.bottomOdos[0]))
 
-                YT.shareButtonsManager.updateTwitter(`https://twitter.com/intent/tweet?url=&text=Watch%20${data.items[0].snippet.title}'s%20Live%20View%2C%20Like%2C%20Dislike%20and%20Comment%20count%20on%20https%3A%2F%2Fwww.youtubelikecounter.com%2F%23%2F${video}%20!`)
-            })
-            
-            $.getJSON(`https://www.googleapis.com/youtube/v3/videos?part=snippet,statistics,liveStreamingDetails&id=${video}&key=AIzaSyCJgQWAiRBd9dPbj0CGoR8H7gnYnR6i-4I`)
-        }
+            YT.updateManager.updateLikes(data.bottomOdos[0])
+            YT.updateManager.updateDislikes(data.bottomOdos[1])
+            YT.updateManager.updateComments(data.bottomOdos[2])   
+        })
     }
 }
 
@@ -97,6 +98,7 @@ YT.searchManager = {
 
             YT.systemManager.loaderFadeIn();
             YT.dataManager.getData();
+            YT.dataManager.getStats();
 
             if (location.href.endsWith("/")) history.pushState(null, null, `#/${video}`);
             else history.pushState(null, null, `/#/${video}`);
@@ -107,13 +109,14 @@ YT.searchManager = {
             }, 250)
 
         } else {
-            $.getJSON(`https://api.youtubelikecounter.com/youtube/search/video/${a}/`, function (data) {
-                if (data.items < 1) alert("No Results Found!")
+            $.getJSON(`${APIUrl}/api/live-view-count/search/${a}`, function (data) {
+                if (data.userData.length < 1) alert("No Results Found!")
                 else {
-                    video = data.items[0].id.videoId
+                    video = data.userData[0].id
 
                     YT.systemManager.loaderFadeIn();
                     YT.dataManager.getData();
+                    YT.dataManager.getStats();
 
                     if (location.href.endsWith("/")) history.pushState(null, null, `#/${video}`);
                     else history.pushState(null, null, `/#/${video}`);
@@ -124,8 +127,6 @@ YT.searchManager = {
                     }, 250)
                 }
             })
-            
-            $.getJSON(`https://www.googleapis.com/youtube/v3/search?part=snippet&q=${a}&key=AIzaSyCJgQWAiRBd9dPbj0CGoR8H7gnYnR6i-4I`)
         }
     }
 }
@@ -135,7 +136,8 @@ setTimeout(function () {
     
     if (window.location.href.includes("#/")) {
         video = YT.systemManager.getVideoInURL()
-        YT.dataManager.getData()
+        YT.dataManager.getData();
+        YT.dataManager.getStats();
         setTimeout(function () {
             document.querySelector(".afterVideoLoaded").classList.remove("hidden")
             YT.systemManager.loaderFadeOut();
@@ -146,10 +148,10 @@ setTimeout(function () {
 })
 
 setInterval(function () {
-    if (video != undefined) {
-        YT.dataManager.getData()
-    }
-}, 2500)
+    if (video == undefined) return;
+
+    YT.dataManager.getStats();
+}, 3000)
 
 document.querySelector(".searchInput").addEventListener("keyup", function(event) {
     if (event.keyCode === 13) {
