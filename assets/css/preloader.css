@@ -6,8 +6,16 @@
     right: 0;
     z-index: 1000;
     background: #ECF0F1;
+    opacity: 1;
+    transition: opacity 1s;
     /* display: none; */
   }
+
+  
+  #loader-wrapper.fade {
+    opacity: 0;
+}
+  
 
 .load {
     position: absolute;
